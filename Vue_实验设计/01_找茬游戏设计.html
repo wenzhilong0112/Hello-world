@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找茬游戏</title>
+    <script src=" https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>找不同（参考右侧图片，在左侧图片上点击两张图片不一样的地方）</h1>
+        <img src="./img/img01.PNG" @click="findDifference">
+        <br />
+        <h1><strong>分数：{{score}}</strong></h1>
+        <p v-if="score === 3">通关</p>
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    score: 0
+                }
+            },
+            methods: {
+                findDifference() {
+                    let x = event.clientX
+                    let y = event.clientY
+                    if ((x > 190 && x < 220 && y > 320 && y < 333) ||
+                        (x > 147 && x < 177 && y > 110 && y < 170) ||
+                        (x > 315 && x < 355 && y > 250 && y < 300)) {
+                        this.score++
+                    }
+                    // if (this.score == 3) {
+                    //     alert("通过")
+                    //     // this.$destroy()
+                    // }
+
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>
